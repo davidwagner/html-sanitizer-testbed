@@ -1,0 +1,62 @@
+This is a testbed for testing the security of HTML
+sanitization programs.
+
+A HTML sanitization program is one that takes a HTML document
+and tries to remove all active content (e.g., all Javascript,
+Flash, Java, etc.) as well as filtering out all other potentially
+harmless stuff.
+
+This testbed contains a bunch of test cases, as well as some
+Javascript that runs in your browser to try to autodetect whether
+any of those test cases managed to fool the HTML sanitizer.  A
+testcase is listed as failing if it looks like that testcase
+may have uncovered a security breach in the HTML sanitizer.
+
+To use this testsuite:
+1. For each file matching testcases/t*.html, run your HTML
+sanitizer on that file (replacing the original file with your
+sanitized version).
+2. Start up Firefox.
+3. Install Firebug.
+4. Enable Firebug's console and script debugger (for the site
+you'll load the file from, in step 5).
+5. Load testbed.html in your browser -- e.g., using file://path/to/testbed.html.
+Firefox should pause for a long time, then produce a ton of output on the 
+Firebug console window.
+6. Did any alert boxes pop up?  If so, there's definitely a hole
+in your HTML sanitizer -- script got executed.
+7. Look through the copious output on the Firebug console window.
+Did any tests fail?  If so, that indicates that my scripts found
+something suspicious which indicates that something bad *might* have
+gotten through the HTML filter -- but you'll have to examine the
+HTML sanitizer's output manually to check for sure.  Examine the output
+on the Firebug console window for clues about what looked suspicious,
+and examine the HTML document prodcued by the HTML sanitizer, and
+try to understand whether this is dangerous or not.  (If necessary,
+you could load that document on a few different browsers to see
+if any of them exhibit dangerous behavior.)  You may experience some
+false positives -- my testing scripts are biased towards producing
+too many warnings ("fail"s) rather than too few.
+
+
+This was tested with Firefox 3.0.2 and Firebug 1.2.1.
+I haven't tested it with any other browser; I make no claims about
+portability -- it might work with other browsers, but it might not.
+
+It's possible this might work without Firebug (I didn't test it),
+but you'll get less detailed output about failing tests and other
+debugging information, so I highly recommend installing Firebug.
+
+This suite comes with no support.  If it works for you, great!
+If it doesn't, you're on your own.
+
+
+TODO: Add the unit tests here: http://feedparser.org/tests/wellformed/sanitize/
+
+Credits:
+http://chxo.com/scripts/safe_html/tests.php
+http://ha.ckers.org/xss.html
+http://applesoup.googlepages.com/bypass_filter.txt
+and many other web sites that I forgot to make a note of
+
+-- David Wagner http://www.cs.berkeley.edu/~daw/

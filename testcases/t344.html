@@ -1,0 +1,12 @@
+<HTML><HEAD></HEAD><BODY>
+
+Test 344.  Check for shenanigans for breaking out of quotes.
+
+<IMG ALT='foo "onerror=alert(344)" bar' SRC=""></IMG>
+<IMG ALT='foo "onerror=alert(344)" bar' SRC="" />
+
+
+<B NAME='foo "onerror=alert(344)" bar'>foo</IMG>
+<B NAME='foo "onerror=alert(344)" bar' />
+
+</BODY></HTML>

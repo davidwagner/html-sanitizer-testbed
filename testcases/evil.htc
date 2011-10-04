@@ -1,0 +1,9 @@
+<PUBLIC:COMPONENT>
+<PUBLIC:ATTACH EVENT="onmouseover" ONEVENT="f()" />
+<SCRIPT>
+var x=5+7;
+alert(x);
+
+function f() { alert(13); }
+</SCRIPT>
+</PUBLIC:COMPONENT>

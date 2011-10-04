@@ -1,0 +1,11 @@
+<HTML><HEAD></HEAD><BODY>
+
+Test 75.
+
+<IMG STYLE="xss:expr/*XSS*/ession(alert(75)")}</STYLE>
+<IMG STYLE='no\xss:noxss("/*");
+xss:ex/*XSS*/pression(alert(75))'>
+<STYLE TYPE="text/javascript">alert(75);</STYLE>
+<STYLE type="text/css">BODY{background:url("javascript:alert(75)")}</STYLE>
+
+</BODY></HTML>
