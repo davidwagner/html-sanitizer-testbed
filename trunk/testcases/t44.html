@@ -1,0 +1,9 @@
+<HTML><HEAD></HEAD><BODY>
+
+This is test 44.  It catches a common error where one uses
+a regexp to remove SCRIPT tags (without looping until a fixpoint
+is reached).
+
+<sc<script>ript>alert(44)</sc</script>ript>
+
+</BODY></HTML>

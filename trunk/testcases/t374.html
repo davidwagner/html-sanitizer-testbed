@@ -1,0 +1,20 @@
+<HTML><HEAD></HEAD><BODY>
+
+Test 374.  Check for shenanigans for breaking out of quotes.
+A refinement of test 353.
+
+<IMG SRC="" ALT=foo"onerror=alert(374);//></IMG>
+<IMG SRC="" ALT=foo"onerror=alert(374);// />
+
+<IMG SRC="" ALT=foo"onerror='alert(374);//'></IMG>
+<IMG SRC="" ALT=foo"onerror='alert(374);//' />
+
+
+
+<B NAME=foo"onerror=alert(374);//>foo</B>
+<B NAME=foo"onerror=alert(374);// />
+
+<B NAME=foo"onerror='alert(374);//'>foo</B>
+<B NAME=foo"onerror='alert(374);//' />
+
+</BODY></HTML>

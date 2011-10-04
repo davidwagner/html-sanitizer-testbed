@@ -1,0 +1,5 @@
+<X>
+  <C>
+    <![CDATA[<IMG SRC="javascript:alert('XSStest.xml');">]]>
+  </C>
+</X>

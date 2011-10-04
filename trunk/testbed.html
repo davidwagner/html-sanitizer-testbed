@@ -1,0 +1,32 @@
+<HTML>
+<HEAD>
+<TITLE>Test</TITLE></HEAD>
+<SCRIPT SRC="walk.js"></SCRIPT>
+<BODY ONLOAD="dotests()">
+
+<DIV ID="results">
+</DIV>
+
+<BR><BR>
+
+<DIV ID="testframes"></DIV>
+
+<SCRIPT>
+console.log("creating iframes");
+for (var i=1; i<=370; i++) {
+    var n = document.createElement("IFRAME");
+    n.src = "testcases/t" + i + ".html";
+    n.width = "80%";
+    n.height = "5%";
+    n.frameBorder = 1;
+    n.name = "t"+i;
+    n.id = "t"+i;
+    addtest(n.name);
+    document.getElementById("testframes").appendChild(n);
+    hookalert(n);
+}
+console.log("done creating iframes");
+</SCRIPT>
+
+</BODY>
+</HTML>
