@@ -1,0 +1,15 @@
+<HTML><HEAD></HEAD><BODY>
+
+Test 377.  Test for duplicate bad attributes.
+(Potentially also triggered by the same bug as test 376.)
+
+<IMG SRC="http://www.cnn.com/good.jpg" onload="javascript:alert(377)" onload="javascript:alert(377)">
+<IMG SRC="http://www.cnn.com/good.jpg" onload="javascript:alert(377)" onload="javascript:alert(377)" onload="javascript:alert(377)" onload="javascript:alert(377)" onload="javascript:alert(377)" onload="javascript:alert(377)" onload="javascript:alert(377)">
+<IMG onload="javascript:alert(377)" onload="javascript:alert(377)" onload="javascript:alert(377)" onload="javascript:alert(377)" onload="javascript:alert(377)" onload="javascript:alert(377)" onload="javascript:alert(377)">
+
+
+<IMG SRC="http://www.cnn.com/good.jpg" onerror="javascript:alert(377)" onerror="javascript:alert(377)">
+<IMG SRC="http://www.cnn.com/good.jpg" onerror="javascript:alert(377)" onerror="javascript:alert(377)" onerror="javascript:alert(377)" onerror="javascript:alert(377)" onerror="javascript:alert(377)" onerror="javascript:alert(377)" onerror="javascript:alert(377)">
+<IMG onerror="javascript:alert(377)" onerror="javascript:alert(377)" onerror="javascript:alert(377)" onerror="javascript:alert(377)" onerror="javascript:alert(377)" onerror="javascript:alert(377)" onerror="javascript:alert(377)">
+
+</BODY></HTML>
