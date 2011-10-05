@@ -1,0 +1,31 @@
+<HTML><HEAD></HEAD><BODY>
+
+Test 378.  Test for malicious HTML inside an image SRC.
+(This broke one sanitizer, which rewrote links into the text of the page
+a la lynx.  For unrelated reasons, it was a probabilistical break,
+so I had to repeat it several times to give myself the maximum chance
+to succeed.)
+
+<IMG SRC="http://www.cnn.com/ev<SCRIPT>alert(377);</SCRIPT>il.jpg">
+<IMG SRC="http://www.cnn.com/ev<SCRIPT>alert(377);</SCRIPT>il.jpg">
+<IMG SRC="http://www.cnn.com/ev<SCRIPT>alert(377);</SCRIPT>il.jpg">
+<IMG SRC="http://www.cnn.com/ev<SCRIPT>alert(377);</SCRIPT>il.jpg">
+<IMG SRC="http://www.cnn.com/ev<SCRIPT>alert(377);</SCRIPT>il.jpg">
+<IMG SRC="http://www.cnn.com/ev<SCRIPT>alert(377);</SCRIPT>il.jpg">
+<IMG SRC="http://www.cnn.com/ev<SCRIPT>alert(377);</SCRIPT>il.jpg">
+<IMG SRC="http://www.cnn.com/ev<SCRIPT>alert(377);</SCRIPT>il.jpg">
+<IMG SRC="http://www.cnn.com/ev<SCRIPT>alert(377);</SCRIPT>il.jpg">
+<IMG SRC="http://www.cnn.com/ev<SCRIPT>alert(377);</SCRIPT>il.jpg">
+
+<A HREF="http://www.cnn.com/ev<SCRIPT>alert(377);</SCRIPT>il.html"></A>
+<A HREF="http://www.cnn.com/ev<SCRIPT>alert(377);</SCRIPT>il.html"></A>
+<A HREF="http://www.cnn.com/ev<SCRIPT>alert(377);</SCRIPT>il.html"></A>
+<A HREF="http://www.cnn.com/ev<SCRIPT>alert(377);</SCRIPT>il.html"></A>
+<A HREF="http://www.cnn.com/ev<SCRIPT>alert(377);</SCRIPT>il.html"></A>
+<A HREF="http://www.cnn.com/ev<SCRIPT>alert(377);</SCRIPT>il.html"></A>
+<A HREF="http://www.cnn.com/ev<SCRIPT>alert(377);</SCRIPT>il.html"></A>
+<A HREF="http://www.cnn.com/ev<SCRIPT>alert(377);</SCRIPT>il.html"></A>
+<A HREF="http://www.cnn.com/ev<SCRIPT>alert(377);</SCRIPT>il.html"></A>
+<A HREF="http://www.cnn.com/ev<SCRIPT>alert(377);</SCRIPT>il.html"></A>
+
+</BODY></HTML>
