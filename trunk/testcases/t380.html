@@ -1,0 +1,14 @@
+<HTML><HEAD></HEAD><BODY>
+
+Test 380.  Test for simple regexp to eliminate javasc_ript from
+the output document.
+
+XXX: One test per file (cramming them all into one file causes weird
+effects and did not successfully break the sanitizer I was attacking,
+whereas one per file did successfully break it; dunno why).
+
+<a href=javajavascriptscript:alert(380)>clickme</a>
+
+
+
+</BODY></HTML>
