@@ -1,0 +1,14 @@
+<HTML><HEAD></HEAD><BODY>
+
+Test 389.  Test for another common error: the sanitizer tries to check
+that the URL starts with http:, but forgot to include an anchor in the
+regexp (the buggy regexp was "(http:|https:)"; it should have been
+"^(http:|https:)").
+
+<IMG SRC="javascript:alert(389);//http://www.cnn.com/good.jpg">
+<IMG SRC="javascript:alert(389);'http://www.cnn.com/good.jpg'">
+
+<A HREF="javascript:alert(389);//http://www.cnn.com/index.html">clicky</a>
+<A HREF="javascript:alert(389);'http://www.cnn.com/index.html'">clicky</a>
+
+</BODY></HTML>
