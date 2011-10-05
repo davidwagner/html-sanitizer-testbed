@@ -1,0 +1,17 @@
+<HTML><HEAD></HEAD><BODY>
+
+Test 376.  Test for a specific bug: the sanitizer has code like
+<pre>
+  for name, value in tag.attrs:
+    if name not in attr_whitelist:
+      del tag[name]
+</pre>
+This is buggy, because it mutates a list while iterating over it.
+As a result, this buggy code might delete only every other attribute
+instead of every attribute.  It can be exploited by introducing
+useless attributes.
+
+<IMG SRC="http://www.cnn.com/good.jpg" ignoreme onload="javascript:alert(376)">
+<IMG SRC="http://www.cnn.com/good.jpg" ignoreme metoo onload="javascript:alert(376)">
+
+</BODY></HTML>
