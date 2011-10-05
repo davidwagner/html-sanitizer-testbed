@@ -1,0 +1,21 @@
+<HTML><HEAD></HEAD><BODY>
+
+Test 396.  Another data: URI test.
+Credits: http://www.gnucitizen.org/blog/bugs-in-the-browser-firefoxs-data-url-scheme-vulnerability/
+
+<a href="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTs8L3NjcmlwdD4=">test</a>
+<a href="data:text/html,<script>alert(1)</script>">clicky</a>
+
+<img src="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTs8L3NjcmlwdD4=">
+<img src="data:text/html,<script>alert(1)</script>">
+
+<INPUT TYPE="image"  SRC="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTs8L3NjcmlwdD4=">
+<INPUT TYPE="image"  SRC="data:text/html,<script>alert(1)</script>">
+
+<LINK REL="stylesheet" HREF="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTs8L3NjcmlwdD4=">
+<LINK REL="stylesheet" HREF="data:text/html,<script>alert(1)</script>">
+
+<LINK HREF="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTs8L3NjcmlwdD4=">
+<LINK HREF="data:text/html,<script>alert(1)</script>">
+
+</BODY></HTML>
