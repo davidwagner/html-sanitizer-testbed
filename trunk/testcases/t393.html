@@ -1,0 +1,9 @@
+<!DOCTYPE html><HTML><HEAD></HEAD><BODY>
+
+Test 393.  Another one that appears to cause differences in parsing
+between BeautifulSoup and Firefox.  BeautifulSoup thinks the script tag
+is inside the comment, Firefox thinks it is outside.
+
+<!-- a -- b > c<SCRIPT>alert(393)</SCRIPT> -->d
+
+</BODY></HTML>
