@@ -1,0 +1,16 @@
+<!DOCTYPE html><HTML><HEAD></HEAD><BODY>
+
+Test 390.  This was a near-miss: I didn't break any sanitizer,
+but it was a close call.  It exploits difference between SGML
+parsing of comments and what you might expect.  It almost breaks
+BeautifulSoup-based sanitizers, but not quite.  The string
+below is parsed differently by BeautifulSoup and Firefox:
+BeautifulSoup thinks the comment ends just before c,
+but Firefox thinks it doesn't end until e.  It fails to break
+BeautifulSoup-based parsers, because when BeautifulSoup pretty-prints
+the output, it html-escapes the contents of the name attribute.
+Unfortunately, the DOCTYPE declaration is essential.
+
+<!--a--b-->c<div name="d-->e<script>alert(390)</script>">
+
+</BODY></HTML>
