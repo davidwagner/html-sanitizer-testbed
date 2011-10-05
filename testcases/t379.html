@@ -1,0 +1,33 @@
+<HTML><HEAD></HEAD><BODY>
+
+Test 379.  Test for confusion about how backslashes work
+(they don't actually escape quotes, inside an attribute value;
+if the writer if the sanitizer is unaware of this, it can lead
+to security holes).
+
+<a href="http://www.cnn.com/index.html' onclick=alert(379) bar=x">clicky</a>
+<a href="http://www.cnn.com/index.html\" onclick=alert(379) bar=x">clicky</a>
+<a href="http://www.cnn.com/index.html\' onclick=alert(379) bar=x">clicky</a>
+
+<a href='http://www.cnn.com/index.html" onclick=alert(379) bar=x'>clicky</a>
+<a href='http://www.cnn.com/index.html\" onclick=alert(379) bar=x'>clicky</a>
+<a href='http://www.cnn.com/index.html\' onclick=alert(379) bar=x'>clicky</a>
+
+<img src="http://www.cnn.com/good.jpg' onerror=alert(379) bar=x">
+<img src="http://www.cnn.com/good.jpg\" onerror=alert(379) bar=x">
+<img src="http://www.cnn.com/good.jpg\' onerror=alert(379) bar=x">
+
+<img src='http://www.cnn.com/good.jpg" onerror=alert(379) bar=x'>
+<img src='http://www.cnn.com/good.jpg\" onerror=alert(379) bar=x'>
+<img src='http://www.cnn.com/good.jpg\' onerror=alert(379) bar=x'>
+
+<div width=1000 name="foo' onmouseover=alert(379) bar=x">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX<br><br><br><br><br><br><br><br><br><br><br>XXX</div>
+<div width=1000 name="foo\" onmouseover=alert(379) bar=x">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX<br><br><br><br><br><br><br><br><br><br><br>XXX</div>
+<div width=1000 name="foo\' onmouseover=alert(379) bar=x">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX<br><br><br><br><br><br><br><br><br><br><br>XXX</div>
+
+<div width=1000 name='foo" onmouseover=alert(379) bar=x'>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX<br><br><br><br><br><br><br><br><br><br><br>XXX</div>
+<div width=1000 name='foo\" onmouseover=alert(379) bar=x'>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX<br><br><br><br><br><br><br><br><br><br><br>XXX</div>
+<div width=1000 name='foo\' onmouseover=alert(379) bar=x'>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX<br><br><br><br><br><br><br><br><br><br><br>XXX</div>
+
+
+</BODY></HTML>
