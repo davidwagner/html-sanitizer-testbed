@@ -38,25 +38,25 @@ function problem(msg, n) {
 function checkurl(u) {
     if (u.match(/script:|mocha:/i))
         problem("url may contain script:", u);
-    if (u.match(/data:/i))
+    if (u.match(/data:/i) && !u.match(/data:image\/none;base64/i))
         problem("url may contain data protocol:", u);
     if (u.match(/vnd:|file:|desk:|shell:|help:/i))
         problem("url may contain weird protocol:", u);
-    if (!u.match(/^http(|s):/i))
-        problem("non-http/https url", u);
+    if (!u.match(/^http(|s):/i) && !u.match(/data:image\/none;base64/i))
+        problem("non-http/https url", u, " (may be harmless)");
     if (u.match(/^\/\//))
         problem("protocol-relative url", u);
     if (u.match(/very.evil.com/i))
-        problem("url may refer to very.evil.com", u);
+        problem("url may refer to very.evil.com", u, " (often harmless)");
     if (u.match(/ha.ckers.org/i))
         problem("url may refer to ha.ckers.org", u);
 }
 
 function checklink(l) {
     if (!l.protocol.match(/^http(|s):$/i))
-        problem("non-http/https link", l);
+        problem("non-http/https link", l, " (might be harmless)");
     if (l.host.match(/very.evil.com/i))
-        problem("link to very.evil.com", l);
+        problem("link to very.evil.com", l, " (probably harmless)");
     if (l.host.match(/ha.ckers.org/i))
         problem("link to ha.ckers.org", l);
     if (l.charset)
@@ -94,9 +94,23 @@ function checkattr(a) {
         if (a.name.match(re))
             problem("forbidden attribute", a);
     }
-    forbid(/charset/i); // includes ACCEPT-CHARSET (on FORM)
     forbid(/^target$/i);
-    forbid(/http-equiv/i);
+    // forbid(/http-equiv/i);
+    if (a.name === 'HTTP-EQUIV') {
+        // <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+        // is OK
+        var ow = a.ownerElement;
+        var isct = a.value.match(/^Content-Type$/i);
+        var isutf8 = ow.content &&
+                ow.content.match(/^text\/html; *charset=UTF-8$/i);
+        if (!isct || !isutf8) {
+            problem("forbidden http-equiv attribute", a.value);
+        }
+    }
+        
+
+    // CHARSET and ACCEPT-CHARSET attributes are harmless, AFAIK.
+    // forbid(/charset/i); // includes ACCEPT-CHARSET (on FORM)
 
     function extracturl(re) {
         if (a.name.match(re))
@@ -111,7 +125,6 @@ function checkattr(a) {
     extracturl(/^profile$/i);
     extracturl(/^longdesc$/i);
     extracturl(/^codebase$/i);
-    extracturl(/^longdesc$/i);
 
     if (a.name.match(/^style$/i))
         checkstyle(a.value);
@@ -134,7 +147,7 @@ function checknode(n) {
     forbid("APPLET");
     forbid("OBJECT");
     forbid("EMBED");
-    forbid("META");
+    // forbid("META"); // more complex check done below
     forbid("XML");
     forbid("BASE"); // not necessarily bad, but changes interpretation of URLs
     forbid("BASEFONT");
@@ -156,8 +169,20 @@ function checknode(n) {
         var u = n.content && n.content.match(/url=(.*)$/i);
         if (u && u[1])
             checkurl(u[1]);
-        else if (n.content && n.content.match(/charset=/i))
+        else if (n.content && n.content.match(/charset=/i) &&
+                 !n.content.match(/^text\/html; *charset=UTF-8$/i))
             problem("META tag with charset", n);
+
+        var ok = 0;
+        // the following is OK and harmless:
+        // <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+        try {
+            if (n.content.match(/^text\/html; *charset=UTF-8$/i) &&
+                n.httpEquiv.match(/^Content-Type$/i))
+                ok = 1;
+        } catch (e) { ok = 0; }
+        if (!ok)
+            problem("META tag", n);
     }
 
     if (n.tagName === "PARAM") {

@@ -39,7 +39,7 @@ false positives -- my testing scripts are biased towards producing
 too many warnings ("fail"s) rather than too few.
 
 
-This was tested with Firefox 3.0.2 and Firebug 1.2.1.
+This was tested with Firefox 3.6.23 and Firebug 1.7.3.
 I haven't tested it with any other browser; I make no claims about
 portability -- it might work with other browsers, but it might not.
 
