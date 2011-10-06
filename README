@@ -21,22 +21,22 @@ sanitized version).
 4. Enable Firebug's console and script debugger (for the site
 you'll load the file from, in step 5).
 5. Load testbed.html in your browser -- e.g., using file://path/to/testbed.html.
-Firefox should pause for a long time, then produce a ton of output on the 
-Firebug console window.
+Firefox should pause for a long time (around 45-60 seconds), then
+produce a ton of output on the Firebug console window.
 6. Did any alert boxes pop up?  If so, there's definitely a hole
 in your HTML sanitizer -- script got executed.
 7. Look through the copious output on the Firebug console window.
 Did any tests fail?  If so, that indicates that my scripts found
 something suspicious which indicates that something bad *might* have
 gotten through the HTML filter -- but you'll have to examine the
-HTML sanitizer's output manually to check for sure.  Examine the output
+HTML sanitizer's output manually to check.  Examine the output
 on the Firebug console window for clues about what looked suspicious,
 and examine the HTML document prodcued by the HTML sanitizer, and
 try to understand whether this is dangerous or not.  (If necessary,
 you could load that document on a few different browsers to see
 if any of them exhibit dangerous behavior.)  You may experience some
 false positives -- my testing scripts are biased towards producing
-too many warnings ("fail"s) rather than too few.
+"fail"s if in doubt.
 
 
 This was tested with Firefox 3.6.23 and Firebug 1.7.3.
