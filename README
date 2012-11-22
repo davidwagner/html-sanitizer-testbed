@@ -52,6 +52,7 @@ If it doesn't, you're on your own.
 
 
 TODO: Add the unit tests here: http://feedparser.org/tests/wellformed/sanitize/
+http://xssdb.net/
 and some stuff mentioned here:
 http://blog.astrumfutura.com/2010/08/html-sanitisation-the-devils-in-the-details-and-the-vulnerabilities/
 http://html5sec.org/
