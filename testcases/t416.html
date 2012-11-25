@@ -1,0 +1,14 @@
+<HTML>
+<BODY>
+
+Test #416.  Some validators don't escape " in attribute values
+and re-generate the HTML themselves; try an exploit it.
+
+<IMG SRC="http://nosuch.com/nosuch" ALT='foo" ONERROR=alert(416) baz="qux'></IMG>
+<IMG SRC="http://nosuch.com/nosuch" ALT='foo" > <SCRIPT>alert(416)</SCRIPT> <IMG baz="qux'></IMG>
+
+<A HREF='foo" ONERROR=alert(416) baz="qux'>clicky</A>
+<A HREF='foo" > <SCRIPT>alert(416)</SCRIPT> <A baz="qux'>clicky2</A>
+
+</BODY>
+</HTML>
