@@ -1,0 +1,15 @@
+<HTML><HEAD></HEAD><BODY>
+
+Test 415.  A common error in use of regexps in Ruby:
+^$ don't anchor at the start/end of the line, but rather at newlines.
+http://homakov.blogspot.com/2012/05/saferweb-injects-in-various-ruby.html
+
+<IMG SRC="javascript:alert(415);//%0Ahttp://www.cnn.com/good.jpg">
+<IMG SRC="javascript:alert(415);//
+http://www.cnn.com/good.jpg">
+
+<A HREF="javascript:alert(415);//%0Ahttp://www.cnn.com/index.html">clicky</a>
+<A HREF="javascript:alert(415);//
+http://www.cnn.com/index.html">clicky</a>
+
+</BODY></HTML>
